@@ -19,7 +19,7 @@ class NewsEntry {
   int newsViews;
   DateTime createdAt;
   bool isFeatured;
-  int userId;
+  int? userId;
 
   NewsEntry({
     required this.id,
@@ -30,7 +30,7 @@ class NewsEntry {
     required this.newsViews,
     required this.createdAt,
     required this.isFeatured,
-    required this.userId,
+    this.userId,
   });
 
   factory NewsEntry.fromJson(Map<String, dynamic> json) => NewsEntry(

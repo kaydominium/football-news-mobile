@@ -28,17 +28,32 @@ class NewsEntryCard extends StatelessWidget {
                 // Thumbnail
                 ClipRRect(
                   borderRadius: BorderRadius.circular(6),
-                  child: Image.network(
-                    'http://localhost:8000/proxy-image/?url=${Uri.encodeComponent(news.thumbnail)}',
-                    height: 150,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) => Container(
-                      height: 150,
-                      color: Colors.grey[300],
-                      child: const Center(child: Icon(Icons.broken_image)),
-                    ),
-                  ),
+                  child: (news.thumbnail.isNotEmpty)
+                      ? Image.network(
+                          'http://localhost:8000/proxy-image/?url=${Uri.encodeComponent(news.thumbnail)}',
+                          height: 150,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) =>
+                              Container(
+                                height: 150,
+                                color: Colors.grey[300],
+                                child: const Center(
+                                  child: Icon(Icons.broken_image),
+                                ),
+                              ),
+                        )
+                      : Container(
+                          height: 150,
+                          width: double.infinity,
+                          color: Colors.grey[300],
+                          child: const Center(
+                            child: Icon(
+                              Icons.image_not_supported,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
                 ),
                 const SizedBox(height: 8),
 
